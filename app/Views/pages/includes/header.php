@@ -8,7 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?php echo INCLUDE_PATH_STATIC ?>estilos/style.css">
+    <link rel="stylesheet" href="<?php echo INCLUDE_PATH_STATIC ?>assets/css/style.css">
     <title>Aplicação de Cadastro de Cidadãos</title>
 </head>
 
@@ -27,7 +27,7 @@
                         <a class="nav-link" href="home">Exibir Registros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href='cad-cidadaos'>Cadastro de Cidadãos</a>
+                        <a class="nav-link" href='citizen'>Cadastro de Cidadãos</a>
                     </li>
                    
                     

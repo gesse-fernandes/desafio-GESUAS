@@ -6,11 +6,11 @@ include("includes/header.php");
 
 <main>
 <div class="container">
-    <h1 class="display-4 text-center mt-5">Lista de Cidadãos</h1>
+    <h1 class="display-4 text-center mt-5">Lista de cidadãos</h1>
 </div>
 </main>
 
-<table class="table table-dark ">
+<table class="table table-dark tam ">
     <thead>
     <tr>
         <th>#</th>
@@ -21,6 +21,7 @@ include("includes/header.php");
     </thead>
     <tbody>
         <?php
+         
          foreach($array as $citizens): ?>
           <tr>
          <td>
@@ -32,14 +33,20 @@ include("includes/header.php");
          <td>
             <?php echo $citizens->getNis() ?>
          </td>
-         <td>
-          <a href="#"  class="btn btn-info">
+         <td>   
+          <?php
+          if($citizens->getid()){
+            ?>
+            <a href="#"  class="btn btn-info">
             Editar
           </a>
           <button class="btn btn-danger">
             Deletar
           </button>
         </td>
+        <?php
+          }
+          ?>
          </tr>
         <?php endforeach; ?>
        

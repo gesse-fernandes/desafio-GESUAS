@@ -30,8 +30,12 @@ class HomeController
             }
           
         } else {
-            $array[] = array();
+            $array[] =  new CitizenModels();
         }
         $this->main->render("home", $array);
+    }
+
+    public function store(){
+        
     }
 }

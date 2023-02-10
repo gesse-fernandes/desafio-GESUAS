@@ -30,6 +30,7 @@ class Application{
     {
         $this->setApp();
         $this->controller->index();
+        $this->controller->store();
     }
 }
 ?>
