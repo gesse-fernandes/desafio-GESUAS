@@ -8,7 +8,9 @@ class Application{
     {
         $loadName = 'app\Controllers\\';
         $url = explode("/",@$_GET['url']);
-
+       
+        
+        
         if($url[0]=='')
         {
             $loadName.='Home';

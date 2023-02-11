@@ -3,7 +3,7 @@
 namespace app\Controllers;
 
 use app\Views\MainView;
-use app\database\Mysql;
+use app\Database\Mysql;
 use app\Models\CitizenModels;
 use app\Utilidades\Utilidades;
 use PDO;

@@ -1,11 +1,9 @@
 <?php
 
-
-
-use app\Controllers\CitizenController;
+use app\API\CitizenControllerAPI;
 use PHPUnit\Framework\TestCase;
 use app\Models\CitizenModels;
-use app\database\Mysql;
+use app\Database\Mysql;
 use app\Views\MainView;
 
 class CitizenTest extends TestCase
@@ -196,5 +194,18 @@ class CitizenTest extends TestCase
         $sql->execute();
         $citizen = $sql->fetch();
         $this->assertEquals($name, $citizen["name"]);
+    }
+    public function testIndexApi()
+    {
+        $controller = new CitizenControllerAPI();
+        $result = $controller->index();
+        $resultArray = json_decode($result, true);
+        $this->assertNotEmpty($resultArray);
+        $this->assertArrayHasKey('citizens', $resultArray);
+        $this->assertArrayHasKey('total_paginas', $resultArray);
+        $this->assertArrayHasKey('pagina_atual', $resultArray);
+        $this->assertGreaterThan(0, count($resultArray['citizens']));
+        $this->assertGreaterThan(0, $resultArray['total_paginas']);
+        $this->assertGreaterThan(0, $resultArray['pagina_atual']);
     }
 }

@@ -1,5 +1,5 @@
 <?php
-namespace app\database;
+namespace app\Database;
 use Exception;
 
 class Mysql{

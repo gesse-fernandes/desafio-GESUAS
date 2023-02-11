@@ -81,12 +81,9 @@ include("includes/header.php");
                         <?php
                         if ($citizens->getid()) {
                         ?>
-                            <a href="#" class="btn btn-info">
+                           <a href="<?php INCLUDE_PATH ?>citizen?id=<?php echo $citizens->getid() ?>" class="btn btn-info">
                                 Editar
                             </a>
-                            <button onclick="confirm('deseja deletar?');"" class="btn btn-danger">
-                                Deletar
-                            </button>
                     </td>
                 <?php
                         }
