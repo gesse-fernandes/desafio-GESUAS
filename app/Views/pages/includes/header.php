@@ -38,28 +38,12 @@
                     <input class="form-control mr-sm-2" name="pesquisar" id="pesquisar" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
                     
                     <button class="btn btn-success my-2 my-sm-0" " type=" submit">Pesquisar</button>
-                    <span role="alert" id="nameError" aria-hidden="true">
-                                    <div class='alert alert-danger my-2 my-sm-0' >Obrigatório</div>
+                    <span role="alert" id="pesquisaError" aria-hidden="true">
+                                   
                                 </span>
                 </form>
 
             </div>
         </div>
     </nav>
-    <script>
-    function search() {
     
-
-    const name = document.getElementById("pesquisar");
-
-    if (!name.value) {
-        const nameError = document.getElementById("nameError");
-        nameError.classList.add("visible");
-        
-        nameError.setAttribute("aria-hidden", false);
-        nameError.setAttribute("aria-invalid", true);
-       return false;
-    }
-    return true;
-}
-    </script>

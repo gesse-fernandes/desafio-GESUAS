@@ -32,6 +32,9 @@ class Application{
         $this->controller->index();
         $this->controller->store();
         $this->controller->pesquisar();
+        $this->controller->existeId();
+        $this->controller->delete();
+        $this->controller->editar();
     }
 }
 ?>

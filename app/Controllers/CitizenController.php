@@ -6,6 +6,7 @@ use app\Views\MainView;
 use app\database\Mysql;
 use app\Models\CitizenModels;
 use app\Utilidades\Utilidades;
+use PDO;
 
 class CitizenController
 {
@@ -46,7 +47,7 @@ class CitizenController
                         $sql->execute();
 
 
-                        $this->util->alerta("$name com o NIS: $nis");
+                        $this->util->alertaAdd("$name com o NIS: $nis");
                         $this->util->redirect(INCLUDE_PATH);
                     }
                 }
@@ -54,7 +55,75 @@ class CitizenController
         }
     }
 
-    public function pesquisar()
+    public function pesquisar($id = null)
     {
+
+        $conexao = $this->pdo->getInstancia();
+        $sql = $conexao->prepare("SELECT * FROM citizens where id = :id");
+        $sql->bindValue(":id", $id);
+        $sql->execute();
+        $array = [];
+        if ($sql->rowCount() > 0) {
+            while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+                $array = new CitizenModels($row['id'], $row['name'], $row['nis']);
+            }
+        } else {
+            $array =  new CitizenModels();
+        }
+        $dados = $array;
+        return $dados;
     }
+
+    public function existeId($id = null)
+    {
+        $conexao = $this->pdo->getInstancia();
+        $sql = $conexao->prepare("SELECT * FROM citizens where id = :id");
+        $sql->bindValue(":id", $id);
+        $sql->execute();
+        if ($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function delete()
+    {
+
+        if (isset($_POST['deletar'])) {
+
+            $id = $_POST['id'];
+            if ($id) {
+                $conexao = $this->pdo->getInstancia();
+                $sql = $conexao->prepare("DELETE FROM citizens where id = :id");
+                $sql->bindValue(":id", $id);
+                $sql->execute();
+                $this->util->alertaDelete("Deletado com sucesso!");
+                $this->util->redirect(INCLUDE_PATH);
+            } else {
+                $this->util->erro("Tente Novamente");
+                $this->util->redirect(INCLUDE_PATH . '/citizen?id=' . $_POST['id']);
+            }
+        }
+    }
+
+    public function editar()
+    {
+        $conexao = $this->pdo->getInstancia();
+     
+      
+            if (isset($_POST['UpCid'])) {
+                $id = $_POST['id'];
+                $name = $_POST['name'];
+                if ($id && $name) {
+                    $sql = $conexao->prepare("UPDATE citizens SET name = :name WHERE id = $id ");
+                    $sql->bindValue(":name", $name);
+                    $sql->execute();
+
+                    $this->util->alertaUp("Atualizado Com sucesso");
+                    $this->util->redirect(INCLUDE_PATH);
+                }
+            }
+    }
+    
 }

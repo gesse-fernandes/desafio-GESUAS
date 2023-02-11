@@ -73,6 +73,7 @@ class HomeController
         );
         return $dados;
     }
-    
-    
+    public function existeId($id = null){}
+    public function delete(){}
+    public function editar(){}
 }
