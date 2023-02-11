@@ -208,4 +208,44 @@ class CitizenTest extends TestCase
         $this->assertGreaterThan(0, $resultArray['total_paginas']);
         $this->assertGreaterThan(0, $resultArray['pagina_atual']);
     }
+    public function testPesquisarApi()
+    {
+        $con = new Mysql();
+        $conexao = $con->getInstancia();
+    
+    
+        $stmt = $conexao->prepare("SELECT nis FROM citizens");
+        $stmt->execute();
+        $nisArray = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $selectedNis = $nisArray[array_rand($nisArray)];
+        $_SERVER['REQUEST_METHOD'] = 'POST';
+    
+    
+        $_POST['nis'] = $selectedNis;
+        $controller = new CitizenControllerAPI();
+        $result = $controller->pesquisarApi();
+        $resultArray = json_decode($result, true);
+        $this->assertNotEmpty($resultArray);
+        $this->assertArrayHasKey('citizens', $resultArray);
+        $this->assertArrayHasKey('total_paginas', $resultArray);
+        $this->assertArrayHasKey('pagina_atual', $resultArray);
+        $this->assertGreaterThan(0, $resultArray['total_paginas']);
+        $this->assertGreaterThan(0, $resultArray['pagina_atual']);
+    }
+    public function testStoreApiSuccess()
+    {
+        $_SERVER['REQUEST_METHOD'] = 'POST';
+        $_POST['name'] = 'John Doe';
+
+        $controller = new CitizenControllerAPI();
+        $result = $controller->storeApi();
+        $resultArray = json_decode($result, true);
+
+        $this->assertArrayHasKey('status', $resultArray);
+        $this->assertArrayHasKey('message', $resultArray);
+        $this->assertEquals('success', $resultArray['status']);
+        $this->assertStringContainsString('adicionado com sucesso.', $resultArray['message']);
+    }
+
+ 
 }
