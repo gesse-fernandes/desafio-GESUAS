@@ -15,7 +15,7 @@ include("includes/header.php");
                         <form action="" method="post" class="form-formulario" onsubmit="return validate()">
                             <div class="form-group">
                                 <span role="alert" id="nameError" aria-hidden="true">
-                                    <div class='alert alert-danger'>Campo Nome do Cidadão Obrigatório </div>
+                                    <div class='alert alert-danger'>Nome do Cidadão Obrigatório </div>
                                 </span>
                                 <label for="nome">Nome</label>
                                 <input type="text" class="form-control" class="form-input" id="name" name="name">

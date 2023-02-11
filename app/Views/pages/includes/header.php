@@ -14,7 +14,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-nav-back"  >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-nav-back">
         <div class="container">
             <a class="navbar-brand text-white" href="<?php echo INCLUDE_PATH; ?>"><img src="https://www.gesuas.com.br/wp-content/themes/gesuas/img/logo-gesuas.png" alt=""> Sistema Cidadão</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#MenuNavbar" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
@@ -29,14 +29,37 @@
                     <li class="nav-item">
                         <a class="nav-link" href='citizen'>Cadastro de Cidadãos</a>
                     </li>
-                   
-                    
-                   
+
+
+
                 </ul>
-                <form class="form-inline my-2 my-lg-0" method="POST">
-                    <input class="form-control mr-sm-2" name="pesquisar" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                <form class="form-inline my-2 my-lg-0"  method="POST" onsubmit="return search()">
+             
+                    <input class="form-control mr-sm-2" name="pesquisar" id="pesquisar" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+                    
                     <button class="btn btn-success my-2 my-sm-0" " type=" submit">Pesquisar</button>
+                    <span role="alert" id="nameError" aria-hidden="true">
+                                    <div class='alert alert-danger my-2 my-sm-0' >Obrigatório</div>
+                                </span>
                 </form>
+
             </div>
         </div>
     </nav>
+    <script>
+    function search() {
+    
+
+    const name = document.getElementById("pesquisar");
+
+    if (!name.value) {
+        const nameError = document.getElementById("nameError");
+        nameError.classList.add("visible");
+        
+        nameError.setAttribute("aria-hidden", false);
+        nameError.setAttribute("aria-invalid", true);
+       return false;
+    }
+    return true;
+}
+    </script>

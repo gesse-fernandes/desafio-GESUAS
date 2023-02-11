@@ -17,10 +17,17 @@ class HomeController
         $this->pdo = new Mysql();
         $this->main = new MainView();
     }
-    public function index()
+    public function index($pagina_atual = 1)
     {
+        if (isset($_GET["page"])) {
+            $current_page = $_GET["page"];
+          } else {
+            $current_page = 1;
+          }
+        $limite = 6;
+        $offset = ($current_page - 1) * $limite;
         $conexao = $this->pdo->getInstancia();
-        $sql = "SELECT * FROM citizens";
+        $sql = "SELECT * FROM citizens LIMIT {$limite} OFFSET {$offset}";
         $stmt = $conexao->prepare($sql);
         $stmt->execute();
         $array = [];
@@ -28,14 +35,44 @@ class HomeController
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 $array[] = new CitizenModels($row['id'], $row['name'], $row['nis']);
             }
-          
         } else {
             $array[] =  new CitizenModels();
         }
-        $this->main->render("home", $array);
+        $total_registros = $conexao->query("SELECT COUNT(*) as total FROM citizens")->fetchColumn();
+        $total_paginas = ceil($total_registros / $limite);
+        $dados = array(
+            "citizens" => $array,
+            "total_paginas" => $total_paginas,
+            "pagina_atual" => $pagina_atual
+        );
+        $this->main->render("home", $dados);
     }
+    
 
     public function store(){
-        
+
     }
+    public function pesquisar($nis = null){
+        
+        $conexao = $this->pdo->getInstancia();
+        $sql = $conexao->prepare("SELECT * FROM citizens where nis like :nis");
+        $sql->bindValue(":nis", "%" . $nis . "%");
+        $sql->execute();
+        $array = [];
+        if ($sql->rowCount() > 0) {
+            while($row = $sql->fetch(PDO::FETCH_ASSOC)){
+                $array[] = new CitizenModels($row['id'], $row['name'], $row['nis']);
+            }
+        } else {
+            $array[] =  new CitizenModels();
+        }
+        $dados = array(
+            "citizens" => $array,
+            "total_paginas" => 1,
+            "pagina_atual" => 1
+        );
+        return $dados;
+    }
+    
+    
 }

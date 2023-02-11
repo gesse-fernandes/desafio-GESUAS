@@ -31,6 +31,7 @@ class Application{
         $this->setApp();
         $this->controller->index();
         $this->controller->store();
+        $this->controller->pesquisar();
     }
 }
 ?>
