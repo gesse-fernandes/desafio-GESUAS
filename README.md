@@ -66,8 +66,10 @@
  ## pacotes usados
 
  - o proprio composer:
+
         - para inicializar o autoload
 
  - Testes com PHP Unit
+ 
         - [PHPUnit](https://phpunit.readthedocs.io/pt_BR/latest/)
 
