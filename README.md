@@ -86,8 +86,54 @@
     vendor/bin/phpunit CitizenTest.php
 
    #para testes especificos rode o comando
+   #testMetodo é apenas um exemplo.
 
    vendor/bin/phpunit --filter testMetodo   CitizenTest.php
 
   
   ```
+
+  ## testar API.
+
+   para testar API criada deve certificar que o banco de dados e a tabela já esta instalado como foi citado acima
+   segundo certificar de saber qual a baseURl está na constante INCLUDE_PATH= http://localhost/desafio-GESUAS/
+   após isso navegar para -> http://localhost/desafio-GESUAS/ + app/API
+
+   ``` bash
+    #ENDPOINTS:index, /store, /pesquisar, /delete/id, /edit/id, /indexOne/id, /existeId/id
+
+    #o primeiro index lista todos os cidadãos paginados no limite 6 ele usa verbo GET
+    http://localhost/desafio-GESUAS/app/API/
+
+
+    #/store: este recebe como parametro(name) para cadastrar o cidadão e usa verbo POST
+     {
+      "name":"JOHN DOE"
+     }
+     http://localhost/desafio-GESUAS/app/API/store/
+
+     #/pesquisar: este recebe como parametro(nis) para consultar o cidadão e usa o verbo POST
+       {
+      "nis":"xxx.xxx.xxx-xx"
+     }
+     http://localhost/desafio-GESUAS/app/API/pesquisar/
+
+    #/delete/id: este recebe na url o número id do que ele vai deletar o cidadão ele usa o verbo DELETE
+     http://localhost/desafio-GESUAS/app/API/delete/1
+
+     #edit/id: este recebe um parametro(name) para atualizar os dados e outro na url o id do cidadão ele usa o verbo POST
+      {
+      "name":"JOHN DOE"
+     }
+     http://localhost/desafio-GESUAS/app/API/edit/1
+
+     #/indexOne/id: este vai retornar o cidadão que recebe na url o id para buscar o cidadão ele usa o verbo GET
+     http://localhost/desafio-GESUAS/app/API/indexOne/1
+
+     #/existeId/id: este vai retornar se o cidadão existe ou não apenas para retornar verdadeiro ou falso ele usa o verbo
+     #GET
+     http://localhost/desafio-GESUAS/app/API/existeId/1
+
+    ```
+    fique a vontade de deseja criar uma aplicação de front-end com vueJS para consumir essa API mas na frente desejo atualizar a documentação da API criando a partir front-end como deve ser consumida.
+    
