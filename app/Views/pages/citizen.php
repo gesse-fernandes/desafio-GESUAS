@@ -15,7 +15,7 @@ if(isset($id)){
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-8 mt-5">
-                <div class="jumbotron">
+                <div class="jumbotron" style="background-color: white;">
                     <h1 class="text-center mt-5">Editar Cidadãos</h1>
                     <br>
                     <br>
@@ -39,7 +39,7 @@ if(isset($id)){
                             <div style="padding: 10px;"></div>
                             <button type="submit" id="submit" onclick="confirm('Tem certeza que deseja excluir este dado?')" name="deletar" class="btn btn-danger">Deletar</button>
                             </div>
-                            <input type="hidden" name="UpCid">
+                            <input type="hidden" name="UpCid" >
 
                         </form>
                     </center>
@@ -56,8 +56,8 @@ if(isset($id)){
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-8 mt-5">
-                <div class="jumbotron">
-                    <h1 class="text-center mt-5">Cadastro de Cidadãos</h1>
+                <div class="jumbotron"  style="background-color: white;">
+                    <h3 class="text-center mt-5">Cadastro de Cidadãos</h1>
                     <br>
                     <br>
                     <center>

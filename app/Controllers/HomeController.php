@@ -5,17 +5,20 @@ namespace app\Controllers;
 use app\Views\MainView;
 use app\Database\Mysql;
 use app\Models\CitizenModels;
+use app\Utilidades\Utilidades;
 use PDO;
 
 class HomeController
 {
     private $main;
     private $pdo;
+    private $util;
     public function __construct()
     {
 
         $this->pdo = new Mysql();
         $this->main = new MainView();
+        $this->util = new Utilidades();
     }
     public function index($pagina_atual = 1)
     {
@@ -74,6 +77,24 @@ class HomeController
         return $dados;
     }
     public function existeId($id = null){}
-    public function delete(){}
+    public function delete()
+    {
+
+        if (isset($_POST['deletar'])) {
+
+            $id = $_POST['id'];
+            if ($id) {
+                $conexao = $this->pdo->getInstancia();
+                $sql = $conexao->prepare("DELETE FROM citizens where id = :id");
+                $sql->bindValue(":id", $id);
+                $sql->execute();
+                $this->util->alertaDelete("Deletado com sucesso!");
+                $this->util->redirect(INCLUDE_PATH);
+            } else {
+                $this->util->erro("Tente Novamente");
+                $this->util->redirect(INCLUDE_PATH);
+            }
+        }
+    }
     public function editar(){}
 }

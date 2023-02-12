@@ -8,7 +8,7 @@ include("includes/header.php");
 
 <main>
     <div class="container">
-        <h1 class="display-4 text-center mt-5">Lista de cidadãos</h1>
+        <h1 class="display-4 text-center mt-5 text-dark" >Lista de cidadãos</h1>
 
 
         <?php
@@ -54,13 +54,13 @@ include("includes/header.php");
             </nav>
 
     </div>
-    <table class="table table-dark tam ">
+    <table class="table tam ">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Nome</th>
-                <th>NIS</th>
-                <th width="100">Ações</th>
+                <th scope="" class="text-white">#</th>
+                <th scope="" class="text-white">Nome</th>
+                <th scope=""class="text-white">NIS</th>
+                <th scope="" class="text-white" width="100">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -81,9 +81,10 @@ include("includes/header.php");
                         <?php
                         if ($citizens->getid()) {
                         ?>
-                           <a href="<?php INCLUDE_PATH ?>citizen?id=<?php echo $citizens->getid() ?>" class="btn btn-info">
+                            <a href="<?php INCLUDE_PATH ?>citizen?id=<?php echo $citizens->getid() ?>" class="btn btn-secondary">
                                 Editar
                             </a>
+                         
                     </td>
                 <?php
                         }
@@ -127,13 +128,13 @@ include("includes/header.php");
     </nav>
 
     </div>
-    <table class="table table-dark tam ">
+    <table class="table tam ">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Nome</th>
-                <th>NIS</th>
-                <th width="100">Ações</th>
+                <th scope="" class="text-white">#</th>
+                <th scope="" class="text-white">Nome</th>
+                <th scope=""class="text-white">NIS</th>
+                <th scope="" class="text-white" width="100">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -154,7 +155,7 @@ include("includes/header.php");
                         <?php
                         if ($citizens->getid()) {
                         ?>
-                            <a href="<?php INCLUDE_PATH ?>citizen?id=<?php echo $citizens->getid() ?>" class="btn btn-info">
+                            <a href="<?php INCLUDE_PATH ?>citizen?id=<?php echo $citizens->getid() ?>" class="btn btn-secondary">
                                 Editar
                             </a>
                          

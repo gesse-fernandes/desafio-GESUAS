@@ -1,7 +1,8 @@
-<footer class="bg-light text-center text-lg-start mt-5">
-    <div class="text-center p-3 bd-primary">
+
+<footer class=" text-center text-lg-start mt-5">
+    <div class="text-center p-3  copy">
         © 2023 Copyright:
-        <a class="text-dark"href="https://github.com/gesse-fernandes"> Gessé Fernandes Martins</a> <img src="https://avatars.githubusercontent.com/u/43449666?v=4" width="80" height="80" alt="">
+        <a class="text-dark" style="font-weight: 500;" href="https://github.com/gesse-fernandes"> Gessé Fernandes Martins</a> <img class="img-profile" src="https://avatars.githubusercontent.com/u/43449666?v=4" width="80" height="80" alt="">
     </div>
 </footer>
 
@@ -14,6 +15,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/6.0.0/bootbox.js"></script>
 <script src="https://github.com/makeusabrew/bootbox/releases/download/v4.4.0/bootbox.min.js"></script>
+
 <script src="<?php echo INCLUDE_PATH_STATIC ?>assets/js/script.js"></script>
 </body>
 

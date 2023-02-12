@@ -456,4 +456,24 @@ class CitizenTest extends TestCase
         $response = json_decode($citizenController->getIdApi($id), true);
         $this->assertEquals($expectedResponse, $response);
     }
+    public function testGetCitizens()
+    {
+
+        $baseUrl = "http://localhost/SistemaCidadao/app/API/" ;
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+        $response = file_get_contents($baseUrl);
+        $response = json_decode($response, true);
+        $this->assertNotEmpty($response);
+        $this->assertArrayHasKey('result', $response);
+        $this->assertArrayHasKey(0, $response['result']);
+        $resultArray = $response['result'][0];
+        $this->assertArrayHasKey('citizens', $resultArray);
+        $this->assertArrayHasKey('total_paginas', $resultArray);
+        $this->assertArrayHasKey('pagina_atual', $resultArray);
+        $this->assertGreaterThan(0, count($resultArray['citizens']));
+        $this->assertGreaterThan(0, $resultArray['total_paginas']);
+        $this->assertGreaterThan(0, $resultArray['pagina_atual']);
+
+    }
+
 }
