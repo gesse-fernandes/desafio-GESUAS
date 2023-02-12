@@ -95,7 +95,7 @@
 
   ## testar API.
 
-   para testar API criada deve certificar que o banco de dados e a tabela já esta instalado como foi citado acima
+   para testar API foi criada deve certificar que o banco de dados e a tabela já esta instalado como foi citado acima
    segundo certificar de saber qual a baseURl está na constante INCLUDE_PATH= http://localhost/desafio-GESUAS/
    após isso navegar para -> http://localhost/desafio-GESUAS/ + app/API
 
@@ -135,5 +135,4 @@
      http://localhost/desafio-GESUAS/app/API/existeId/1
 
     ```
-    fique a vontade de deseja criar uma aplicação de front-end com vueJS para consumir essa API mas na frente desejo atualizar a documentação da API criando a partir front-end como deve ser consumida.
-    
+  fique a vontade de deseja criar uma aplicação de front-end com vueJS para consumir essa API mas na frente desejo atualizar a documentação da API criando a partir front-end como deve ser consumida.
