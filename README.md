@@ -56,5 +56,10 @@
 
  git clone https://github.com/gesse-fernandes/desafio-GESUAS
 
+# usar o composer para inicializar.
+ composer install
+
+ # entrar na pasta /app/DataBase/
+ # copiar todo o conteúdo do SistemaCidadao.sql para criar o banco de dados e a tabela ou se preferir no php Admin importar
  ```
 
