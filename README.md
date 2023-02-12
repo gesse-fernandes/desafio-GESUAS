@@ -134,5 +134,15 @@
      #GET
      http://localhost/desafio-GESUAS/app/API/existeId/1
 
-    ```
+  ```
   fique a vontade de deseja criar uma aplicação de front-end com vueJS para consumir essa API mas na frente desejo atualizar a documentação da API criando a partir front-end como deve ser consumida.
+
+  ## minhas considerações
+
+   Este teste foi muito proveitoso pois tentei de tudo caprichar da melhor forma possível ter criado também uma API pois ja era uma vontade minha á muito tempo e este teste mais ainda pois foi capaz de eu realizar testes automatizados como também montar uma arquitetura de MVC um pouco mais facil de ser interpretada e utilizada e melhor ainda sem a necessidade de e usar algum framework para que eu mesma possa criar minhas rotas dinamicas e regras a partir de configurações do autoload e do proprio .htaccess  espero que vocês compreendam todo o código como também a execução do mesmo e também da documentação deste repositório para avaliação.
+
+  ### Agradeço bastante a oportunidade obrigado mesmo.
+
+  
+
+
