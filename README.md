@@ -36,3 +36,25 @@
  2. Testes automatizados; 
 
  3. A utilização de um gerenciador de pacotes.
+
+
+## configuração
+
+ 1. precisa ter o xamp ou wamp instalado
+
+ 2. php 7 ou 8 e mysql Intalado
+
+ 3. composer instalado
+
+ 4. configurar no arquivo raiz do projeto /index.php manter do jeito que está a constante INCLUDE_PATH: http://localhost/desafio-GESUAS/ como também  INCLUDE_PATH_STATIC: http://localhost/desafio-GESUAS/app/Views/pages/
+ mas deve ter esta pasta no htdocs desafio-GESUAS para modificar fique a vontade.
+
+ ## instalação
+
+``` bash
+#clonar o repositório
+
+ git clone https://github.com/gesse-fernandes/desafio-GESUAS
+
+ ```
+

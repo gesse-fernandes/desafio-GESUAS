@@ -39,4 +39,3 @@ class Application{
         $this->controller->editar();
     }
 }
-?>

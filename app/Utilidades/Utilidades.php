@@ -1,19 +1,22 @@
-<?php 
+<?php
+
 namespace app\Utilidades;
 
-class Utilidades{
+class Utilidades
+{
 
-    public function redirect($url){;
-        echo '<script>
+  public function redirect($url)
+  {;
+    echo '<script>
         setTimeout(function() {
         window.location.href="' . $url . '"
     }, 3000);
         </script>';
-       
-    }
+  }
 
-    public function alertaAdd($mensagem){
-echo "
+  public function alertaAdd($mensagem)
+  {
+    echo "
 
 <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
   <div class='modal-dialog' role='document'>
@@ -38,10 +41,10 @@ echo "
 </script>
 
 ";
-
-    }
-    public function alertaDelete($mensagem){
-      echo "
+  }
+  public function alertaDelete($mensagem)
+  {
+    echo "
 
       <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
         <div class='modal-dialog' role='document'>
@@ -66,9 +69,10 @@ echo "
       </script>
       
       ";
-    }
-    public function alertaUp($mensagem){
-      echo "
+  }
+  public function alertaUp($mensagem)
+  {
+    echo "
 
       <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
         <div class='modal-dialog' role='document'>
@@ -93,9 +97,10 @@ echo "
       </script>
       
       ";
-    }
-    public function erro($mensagem){
-      echo "
+  }
+  public function erro($mensagem)
+  {
+    echo "
 
       <div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
         <div class='modal-dialog' role='document'>
@@ -120,5 +125,5 @@ echo "
       </script>
       
       ";
-    }
+  }
 }

@@ -13,7 +13,7 @@ function validate() {
         return false;
     }
     return true;
-} 
+}
 function search() {
     const name = document.getElementById("pesquisar");
 

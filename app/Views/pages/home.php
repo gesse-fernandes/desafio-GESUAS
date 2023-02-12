@@ -8,7 +8,7 @@ include("includes/header.php");
 
 <main>
     <div class="container">
-        <h1 class="display-4 text-center mt-5 text-dark" >Lista de cidadãos</h1>
+        <h1 class="display-4 text-center mt-5 text-dark">Lista de cidadãos</h1>
 
 
         <?php
@@ -19,9 +19,9 @@ include("includes/header.php");
             $return = $homeController->pesquisar($nis);
 
             if (empty($return['citizens'][0]->getid())) {
-                echo "<div class='alert alert-warning'>Cidadão não encontrado tentativa: ". $nis .  "</div>";
+                echo "<div class='alert alert-warning'>Cidadão não encontrado tentativa: " . $nis .  "</div>";
             } else {
-                echo "<div class='alert alert-success'>Cidadão encontrado: " . $return['citizens'][0]->getName() . " NIS:". $return['citizens'][0]->getNis() . "</div>";
+                echo "<div class='alert alert-success'>Cidadão encontrado: " . $return['citizens'][0]->getName() . " NIS:" . $return['citizens'][0]->getNis() . "</div>";
             }
 
         ?>
@@ -59,7 +59,7 @@ include("includes/header.php");
             <tr>
                 <th scope="" class="text-white">#</th>
                 <th scope="" class="text-white">Nome</th>
-                <th scope=""class="text-white">NIS</th>
+                <th scope="" class="text-white">NIS</th>
                 <th scope="" class="text-white" width="100">Ações</th>
             </tr>
         </thead>
@@ -84,7 +84,7 @@ include("includes/header.php");
                             <a href="<?php INCLUDE_PATH ?>citizen?id=<?php echo $citizens->getid() ?>" class="btn btn-secondary">
                                 Editar
                             </a>
-                         
+
                     </td>
                 <?php
                         }
@@ -133,7 +133,7 @@ include("includes/header.php");
             <tr>
                 <th scope="" class="text-white">#</th>
                 <th scope="" class="text-white">Nome</th>
-                <th scope=""class="text-white">NIS</th>
+                <th scope="" class="text-white">NIS</th>
                 <th scope="" class="text-white" width="100">Ações</th>
             </tr>
         </thead>
@@ -158,7 +158,7 @@ include("includes/header.php");
                             <a href="<?php INCLUDE_PATH ?>citizen?id=<?php echo $citizens->getid() ?>" class="btn btn-secondary">
                                 Editar
                             </a>
-                         
+
                     </td>
                 <?php
                         }

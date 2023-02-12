@@ -2,9 +2,10 @@
 
 namespace app\Views;
 
-class MainView{
+class MainView
+{
     public  function render($fileName, $array = null)
     {
-        include('pages/'.$fileName. '.php');
+        include('pages/' . $fileName . '.php');
     }
 }

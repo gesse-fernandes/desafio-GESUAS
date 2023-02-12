@@ -183,7 +183,7 @@ class CitizenControllerAPI
         return json_encode($array);
     }
 
-    public function editarApi($data,$id)
+    public function editarApi($data, $id)
     {
         $array = [
             'error' => '',
@@ -206,11 +206,9 @@ class CitizenControllerAPI
                     $array['result'][] = [
                         'message' => 'Atualizado com sucesso.',
                     ];
-                }else{
+                } else {
                     $array['error'] = 'Não existe dados';
-                }   
-              
-               
+                }
             } else {
                 $array['error'] = 'Dados inválidos.';
             }
@@ -282,8 +280,7 @@ class CitizenControllerAPI
             } else {
                 $array['error'] = "Não foi enviado o ID";
             }
-         
-        }else{
+        } else {
             $array['error'] = "Método não permitido (Apenas GET)";
         }
         CitizenControllerAPI::conifgHeader();

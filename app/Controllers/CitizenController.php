@@ -110,20 +110,19 @@ class CitizenController
     public function editar()
     {
         $conexao = $this->pdo->getInstancia();
-     
-      
-            if (isset($_POST['UpCid'])) {
-                $id = $_POST['id'];
-                $name = $_POST['name'];
-                if ($id && $name) {
-                    $sql = $conexao->prepare("UPDATE citizens SET name = :name WHERE id = $id ");
-                    $sql->bindValue(":name", $name);
-                    $sql->execute();
 
-                    $this->util->alertaUp("Atualizado Com sucesso");
-                    $this->util->redirect(INCLUDE_PATH);
-                }
+
+        if (isset($_POST['UpCid'])) {
+            $id = $_POST['id'];
+            $name = $_POST['name'];
+            if ($id && $name) {
+                $sql = $conexao->prepare("UPDATE citizens SET name = :name WHERE id = $id ");
+                $sql->bindValue(":name", $name);
+                $sql->execute();
+
+                $this->util->alertaUp("Atualizado Com sucesso");
+                $this->util->redirect(INCLUDE_PATH);
             }
+        }
     }
-    
 }

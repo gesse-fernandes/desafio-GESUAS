@@ -378,7 +378,7 @@ class CitizenTest extends TestCase
         $idArray = $sql->fetchAll(PDO::FETCH_COLUMN);
         $selectedId = $idArray[array_rand($idArray)];
         $id = $selectedId;
-        
+
         $citizenController = new CitizenControllerAPI();
         $response = $citizenController->existeIdApi($id);
         $result = json_decode($response, true);
@@ -389,7 +389,7 @@ class CitizenTest extends TestCase
         $this->assertArrayHasKey('message', $result['result'][0]);
         $this->assertTrue($result['result'][0]['exists']);
         $this->assertEquals('Encontrado', $result['result'][0]['message']);
-    
+
         $id = null;
         $response = $citizenController->existeIdApi($id);
         $result = json_decode($response, true);
@@ -459,7 +459,7 @@ class CitizenTest extends TestCase
     public function testGetCitizens()
     {
 
-        $baseUrl = "http://localhost/SistemaCidadao/app/API/" ;
+        $baseUrl = "http://localhost/desafio-GESUAS/app/API/";
         $_SERVER['REQUEST_METHOD'] = 'GET';
         $response = file_get_contents($baseUrl);
         $response = json_decode($response, true);
@@ -473,7 +473,5 @@ class CitizenTest extends TestCase
         $this->assertGreaterThan(0, count($resultArray['citizens']));
         $this->assertGreaterThan(0, $resultArray['total_paginas']);
         $this->assertGreaterThan(0, $resultArray['pagina_atual']);
-
     }
-
 }

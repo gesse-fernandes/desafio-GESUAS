@@ -24,9 +24,9 @@ class HomeController
     {
         if (isset($_GET["page"])) {
             $current_page = $_GET["page"];
-          } else {
+        } else {
             $current_page = 1;
-          }
+        }
         $limite = 6;
         $offset = ($current_page - 1) * $limite;
         $conexao = $this->pdo->getInstancia();
@@ -35,7 +35,7 @@ class HomeController
         $stmt->execute();
         $array = [];
         if ($stmt->rowCount() > 0) {
-            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 $array[] = new CitizenModels($row['id'], $row['name'], $row['nis']);
             }
         } else {
@@ -50,20 +50,21 @@ class HomeController
         );
         $this->main->render("home", $dados);
     }
-    
 
-    public function store(){
 
+    public function store()
+    {
     }
-    public function pesquisar($nis = null){
-        
+    public function pesquisar($nis = null)
+    {
+
         $conexao = $this->pdo->getInstancia();
         $sql = $conexao->prepare("SELECT * FROM citizens where nis like :nis");
         $sql->bindValue(":nis", "%" . $nis . "%");
         $sql->execute();
         $array = [];
         if ($sql->rowCount() > 0) {
-            while($row = $sql->fetch(PDO::FETCH_ASSOC)){
+            while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
                 $array[] = new CitizenModels($row['id'], $row['name'], $row['nis']);
             }
         } else {
@@ -76,25 +77,13 @@ class HomeController
         );
         return $dados;
     }
-    public function existeId($id = null){}
+    public function existeId($id = null)
+    {
+    }
     public function delete()
     {
-
-        if (isset($_POST['deletar'])) {
-
-            $id = $_POST['id'];
-            if ($id) {
-                $conexao = $this->pdo->getInstancia();
-                $sql = $conexao->prepare("DELETE FROM citizens where id = :id");
-                $sql->bindValue(":id", $id);
-                $sql->execute();
-                $this->util->alertaDelete("Deletado com sucesso!");
-                $this->util->redirect(INCLUDE_PATH);
-            } else {
-                $this->util->erro("Tente Novamente");
-                $this->util->redirect(INCLUDE_PATH);
-            }
-        }
     }
-    public function editar(){}
+    public function editar()
+    {
+    }
 }

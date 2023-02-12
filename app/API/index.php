@@ -1,11 +1,12 @@
 <?php
-
+//aqui é o arquivo de rotas para a API EndPoints:  /store,/pesquisar, /delete/id, /edit/id, /indexOne/id, /existeId/id
 use app\API\CitizenControllerAPI;
+
 $route = $_GET['route'] ?? 'index';
 require("CitizenControllerAPI.php");
 $citizenControllerAPI = new CitizenControllerAPI();
 $data = json_decode(file_get_contents('php://input'), true);
-switch($route){
+switch ($route) {
 
     case 'index':
         echo $citizenControllerAPI->index();
@@ -22,7 +23,7 @@ switch($route){
         break;
     case 'edit':
         $id = $_GET['id'] ?? null;
-        echo $citizenControllerAPI->editarApi($data,$id);
+        echo $citizenControllerAPI->editarApi($data, $id);
         break;
     case 'indexOne':
         $id = $_GET['id'] ?? null;
@@ -32,5 +33,4 @@ switch($route){
         $id = $_GET['id'] ?? null;
         echo $citizenControllerAPI->existeIdApi($id);
         break;
-
 }
