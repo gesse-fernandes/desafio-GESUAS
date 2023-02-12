@@ -52,14 +52,22 @@
  ## instalação
 
 ``` bash
-#clonar o repositório
+#clonar o repositório.
 
  git clone https://github.com/gesse-fernandes/desafio-GESUAS
 
-# usar o composer para inicializar.
+# usar o composer para instalar.
  composer install
 
  # entrar na pasta /app/DataBase/
- # copiar todo o conteúdo do SistemaCidadao.sql para criar o banco de dados e a tabela ou se preferir no php Admin importar
+ # copiar todo o conteúdo do SistemaCidadao.sql para criar o banco de dados e a tabela ou se preferir no phpmyadmin importar.
  ```
+
+ ## pacotes usados
+
+ - o proprio composer:
+        - para inicializar o autoload
+
+ - Testes com PHP Unit
+        - [PHPUnit](https://phpunit.readthedocs.io/pt_BR/latest/)
 
