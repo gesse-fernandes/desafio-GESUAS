@@ -135,7 +135,7 @@
      http://localhost/desafio-GESUAS/app/API/existeId/1
 
   ```
-   Mas na frente desejo atualizar a documentação da API criando a parti do front-end como deve ser consumida.
+   Mas na frente desejo atualizar a documentação da API criando a partir do front-end como deve ser consumida.
 
   ## minhas considerações
 
