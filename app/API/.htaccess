@@ -1,0 +1,11 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^index/?$ index.php?route=index [L,QSA]
+RewriteRule ^store/?$ index.php?route=store [L,QSA]
+RewriteRule ^edit/(\d+)?$ index.php?route=edit&id=$1 [L,QSA]
+RewriteRule ^delete/(\d+)?$ index.php?route=delete&id=$1 [L,QSA]
+RewriteRule ^pesquisar/?$ index.php?route=pesquisar [L,QSA]
+RewriteRule ^indexOne/(\d+)/?$ index.php?route=indexOne&id=$1 [L,QSA]
+RewriteRule ^existeId/(\d+)?$ index.php?route=existeId&id=$1 [L,QSA]

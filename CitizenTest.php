@@ -197,10 +197,14 @@ class CitizenTest extends TestCase
     }
     public function testIndexApi()
     {
+        $_SERVER['REQUEST_METHOD'] = 'GET';
         $controller = new CitizenControllerAPI();
         $result = $controller->index();
         $resultArray = json_decode($result, true);
         $this->assertNotEmpty($resultArray);
+        $this->assertArrayHasKey('result', $resultArray);
+        $this->assertArrayHasKey(0, $resultArray['result']);
+        $resultArray = $resultArray['result'][0];
         $this->assertArrayHasKey('citizens', $resultArray);
         $this->assertArrayHasKey('total_paginas', $resultArray);
         $this->assertArrayHasKey('pagina_atual', $resultArray);
@@ -212,40 +216,244 @@ class CitizenTest extends TestCase
     {
         $con = new Mysql();
         $conexao = $con->getInstancia();
-    
-    
+
+
         $stmt = $conexao->prepare("SELECT nis FROM citizens");
         $stmt->execute();
         $nisArray = $stmt->fetchAll(PDO::FETCH_COLUMN);
         $selectedNis = $nisArray[array_rand($nisArray)];
         $_SERVER['REQUEST_METHOD'] = 'POST';
-    
-    
+
+
         $_POST['nis'] = $selectedNis;
         $controller = new CitizenControllerAPI();
-        $result = $controller->pesquisarApi();
+        $result = $controller->pesquisarApi($selectedNis);
         $resultArray = json_decode($result, true);
         $this->assertNotEmpty($resultArray);
+        $resultArray = $resultArray['result'][0];
         $this->assertArrayHasKey('citizens', $resultArray);
         $this->assertArrayHasKey('total_paginas', $resultArray);
         $this->assertArrayHasKey('pagina_atual', $resultArray);
+        $this->assertGreaterThan(0, count($resultArray['citizens']));
         $this->assertGreaterThan(0, $resultArray['total_paginas']);
         $this->assertGreaterThan(0, $resultArray['pagina_atual']);
     }
     public function testStoreApiSuccess()
     {
+        $data = ['name' => 'John Doe'];
         $_SERVER['REQUEST_METHOD'] = 'POST';
-        $_POST['name'] = 'John Doe';
+        $_POST['name'] = $data['name'];
 
         $controller = new CitizenControllerAPI();
-        $result = $controller->storeApi();
+        $result = $controller->storeApi($data);
         $resultArray = json_decode($result, true);
 
-        $this->assertArrayHasKey('status', $resultArray);
+        $this->assertArrayHasKey('result', $resultArray);
+        $resultArray = $resultArray['result'][0];
         $this->assertArrayHasKey('message', $resultArray);
-        $this->assertEquals('success', $resultArray['status']);
-        $this->assertStringContainsString('adicionado com sucesso.', $resultArray['message']);
+        $this->assertArrayNotHasKey('error', $resultArray);
+        $this->assertStringContainsString('John Doe', $resultArray['message']);
+        $this->assertStringContainsString('NIS', $resultArray['message']);
+        $this->assertStringContainsString('adicionado com sucesso', $resultArray['message']);
+    }
+    public function testDeleteApiSuccess()
+    {
+        $con = new Mysql();
+        $conexao = $con->getInstancia();
+
+
+        $stmt = $conexao->prepare("SELECT id FROM citizens");
+        $stmt->execute();
+        $idArray = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        $selectedId = $idArray[array_rand($idArray)];
+
+
+        $check = $conexao->prepare("SELECT * FROM citizens where id = :id");
+        $check->bindValue(":id", $selectedId);
+        $check->execute();
+        $this->assertTrue($check->rowCount() > 0);
+
+        $_SERVER['REQUEST_METHOD'] = 'DELETE';
+
+        $controller = new CitizenControllerAPI();
+        $response = json_decode($controller->deleteApi($selectedId), true);
+
+        $this->assertArrayHasKey('result', $response);
+        $this->assertArrayHasKey('message', $response['result'][0]);
+        $this->assertEquals('Deletado com sucesso!', $response['result'][0]['message']);
     }
 
- 
+    public function testDeleteApiFailure()
+    {
+        $id = null;
+
+        $_SERVER['REQUEST_METHOD'] = 'DELETE';
+
+        $controller = new CitizenControllerAPI();
+        $response = json_decode($controller->deleteApi($id), true);
+
+        $this->assertArrayHasKey('error', $response);
+        $this->assertEquals('Tente Novamente', $response['error']);
+    }
+
+    public function testDeleteApiMethodNotAllowed()
+    {
+        $id = 123;
+
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+
+        $controller = new CitizenControllerAPI();
+        $response = json_decode($controller->deleteApi($id), true);
+
+        $this->assertArrayHasKey('error', $response);
+        $this->assertEquals('Método não permitido (Apenas DELETE`)', $response['error']);
+    }
+    public function testEditAPI()
+    {
+        $data = [
+            'name' => 'John Doe',
+        ];
+        $con = new Mysql();
+        $conexao = $con->getInstancia();
+        $sql = $conexao->prepare("SELECT id FROM citizens");
+        $sql->execute();
+        $idArray = $sql->fetchAll(PDO::FETCH_COLUMN);
+        $selectedId = $idArray[array_rand($idArray)];
+        $id = $selectedId;
+        $_SERVER['REQUEST_METHOD'] = 'POST';
+        parse_str(file_get_contents('php://input'), $_POST);
+        $_POST['name'] = $data['name'];
+
+        $citizenController = new CitizenControllerAPI();
+        $response = $citizenController->editarApi($data, $id);
+        $result = json_decode($response, true);
+        $this->assertArrayHasKey('error', $result);
+        $this->assertArrayHasKey('result', $result);
+        $this->assertEquals('Atualizado com sucesso.', $result['result'][0]['message']);
+    }
+
+
+    public function testEditAPIInvalidMethod()
+    {
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+
+        $data = [
+            'name' => 'John Doe',
+        ];
+
+        $citizenController = new CitizenControllerAPI();
+        $response = $citizenController->editarApi($data, null);
+
+        $expected = [
+            'error' => 'Método não permitido (Apenas POST)',
+            'result' => [],
+        ];
+
+        $this->assertEquals(json_encode($expected), $response);
+    }
+
+    public function testEditAPIInvalidData()
+    {
+        $_SERVER['REQUEST_METHOD'] = 'POST';
+
+        $data = [];
+
+        $citizenController = new CitizenControllerAPI();
+        $response = $citizenController->editarApi($data, null);
+
+        $expected = [
+            'error' => 'Dados inválidos.',
+            'result' => [],
+        ];
+
+        $this->assertEquals(json_encode($expected), $response);
+    }
+    public function testExistsIdAPI()
+    {
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+        $con = new Mysql();
+        $conexao = $con->getInstancia();
+        $sql = $conexao->prepare("SELECT id FROM citizens");
+        $sql->execute();
+        $idArray = $sql->fetchAll(PDO::FETCH_COLUMN);
+        $selectedId = $idArray[array_rand($idArray)];
+        $id = $selectedId;
+        
+        $citizenController = new CitizenControllerAPI();
+        $response = $citizenController->existeIdApi($id);
+        $result = json_decode($response, true);
+        $this->assertArrayHasKey('error', $result);
+        $this->assertArrayHasKey('result', $result);
+        $this->assertEmpty($result['error']);
+        $this->assertArrayHasKey('exists', $result['result'][0]);
+        $this->assertArrayHasKey('message', $result['result'][0]);
+        $this->assertTrue($result['result'][0]['exists']);
+        $this->assertEquals('Encontrado', $result['result'][0]['message']);
+    
+        $id = null;
+        $response = $citizenController->existeIdApi($id);
+        $result = json_decode($response, true);
+        $this->assertArrayHasKey('error', $result);
+        $this->assertArrayHasKey('result', $result);
+        $this->assertEquals('ID não fornecido', $result['error']);
+        $this->assertEmpty($result['result']);
+    }
+    public function testGetIdApi()
+    {
+        $citizenController = new CitizenControllerAPI();
+        $con = new Mysql();
+        $conexao = $con->getInstancia();
+        $sql = $conexao->prepare("SELECT id FROM citizens");
+        $sql->execute();
+        $idArray = $sql->fetchAll(PDO::FETCH_COLUMN);
+        $selectedId = $idArray[array_rand($idArray)];
+        $sql = $conexao->prepare("SELECT * FROM citizens where id = :id");
+        $sql->bindValue(":id", $selectedId);
+        $sql->execute();
+        $array = [];
+        if ($sql->rowCount() > 0) {
+            while ($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+                $array = $row;
+            }
+        } else {
+            $array =  [];
+        }
+        $expectedResponse = [
+            'error' => '',
+            'result' => [
+                [
+                    'status' => 'success',
+                    'message' => 'Dados encontrados',
+                    'data' => $array
+                ]
+            ]
+        ];
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+        $response = json_decode($citizenController->getIdApi($selectedId), true);
+        $this->assertEquals($expectedResponse, $response);
+        $id = 100;
+        $expectedResponse = [
+            'error' => 'Não existe dados',
+            'result' => []
+        ];
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+        $response = json_decode($citizenController->getIdApi($id), true);
+        $this->assertEquals($expectedResponse, $response);
+        $id = null;
+        $expectedResponse = [
+            'error' => 'Não foi enviado o ID',
+            'result' => []
+        ];
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+        $response = json_decode($citizenController->getIdApi($id), true);
+        $this->assertEquals($expectedResponse, $response);
+        $id = 1;
+        $expectedResponse = [
+            'error' => 'Método não permitido (Apenas GET)',
+            'result' => []
+        ];
+        $_SERVER['REQUEST_METHOD'] = 'POST';
+        $response = json_decode($citizenController->getIdApi($id), true);
+        $this->assertEquals($expectedResponse, $response);
+    }
 }
