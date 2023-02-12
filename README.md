@@ -69,7 +69,25 @@
 
         - para inicializar o autoload
 
- - Testes com PHP Unit
- 
+ - Testes com PHP Unit:
+
         - [PHPUnit](https://phpunit.readthedocs.io/pt_BR/latest/)
 
+ ## Padrões Utilizados e Arquitetura
+  
+   Foi utilizado dois padrões de Arquitetura MVC(Model,View, Controller) e também REST API com PHP puro configurado por mim mesmo usando regras de pradrões de htaccess na pasta / do projeto e outro configurado na pasta /app/API para criar rotas dinâmicas. foi usado também o paradigma de Orientação a Objetos toda estruturada com classes, atributos e métodos e instanciada de acordo com a estrutura utilizada. também foi criado um arquivo Applicatiton responsavel por toda aplicação dinamica pelo metodo run() que executa tudo que está sendo passado pelo controller pois tudo foi mapeado.
+  
+  ## para realizar os testes 
+
+   bom uma observação criei varios testes pensando na situações e tomadas de decisões do algoritmo pode tomar
+  ``` bash
+   #primeiro certificar que o phpunit/phpunit está instalado 
+   #em seguida executar o comando
+    vendor/bin/phpunit CitizenTest.php
+
+   #para testes especificos rode o comando
+
+   vendor/bin/phpunit --filter testMetodo   CitizenTest.php
+
+  
+  ```
