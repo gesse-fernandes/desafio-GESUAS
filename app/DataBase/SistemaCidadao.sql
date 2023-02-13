@@ -35,6 +35,9 @@ CREATE TABLE `citizens` (
   `nis` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `citizens` (`id`, `name`, `nis`) VALUES
+(5, 'Novo Nome', '626.777.678-93'),
+(8, 'John Doe', '517.285.508-58');
 --
 -- Índices para tabelas despejadas
 --

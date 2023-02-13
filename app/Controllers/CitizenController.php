@@ -35,6 +35,7 @@ class CitizenController
             if (isset($_POST['acao'])) {
                 if (isset($_POST['cadCid'])) {
                     $name = $_POST['name'];
+                    $name = trim($name);
                     $nis = $this->citens->gerenateNIS();
                     if ($this->citens->isValidNIS($nis)) {
                         $this->citens->setName($name);
@@ -115,6 +116,7 @@ class CitizenController
         if (isset($_POST['UpCid'])) {
             $id = $_POST['id'];
             $name = $_POST['name'];
+            $name = trim($name);
             if ($id && $name) {
                 $sql = $conexao->prepare("UPDATE citizens SET name = :name WHERE id = $id ");
                 $sql->bindValue(":name", $name);

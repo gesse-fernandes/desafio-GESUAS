@@ -64,7 +64,7 @@ class CitizenControllerAPI
         if ($method === 'POST') {
             parse_str(file_get_contents('php://input'), $data);
             $nis = !empty($data['nis']) ? $data['nis'] : (isset($_POST['nis']) ? $_POST['nis'] : null);
-
+            $nis = trim($nis);
             if ($nis) {
                 $sql = $conexao->prepare("SELECT * FROM citizens where nis like :nis");
                 $sql->bindValue(":nis", "%" . $nis . "%");
@@ -110,7 +110,7 @@ class CitizenControllerAPI
         if ($method == 'POST') {
             parse_str(file_get_contents('php://input'), $data);
             $name = !empty($data['name']) ? $data['name'] : (isset($_POST['name']) ? $_POST['name'] : null);
-
+            $name = trim($name);
             $nis = CitizenControllerAPI::gerenateNIS();
             if ($name) {
                 if (CitizenControllerAPI::isValidNIS($nis)) {
@@ -194,6 +194,7 @@ class CitizenControllerAPI
         if ($method == 'POST') {
             parse_str(file_get_contents('php://input'), $data);
             $name = !empty($data['name']) ? $data['name'] : (isset($_POST['name']) ? $_POST['name'] : null);
+            $name = trim($name);
             if ($id && $name) {
                 $id = filter_var($id);
                 $sql = $conexao->prepare("SELECT * FROM citizens where id = :id");

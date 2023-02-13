@@ -1,19 +1,20 @@
 
 function validate() {
-
-
     const name = document.getElementById("name");
-
-    if (!name.value) {
+    let x = false;
+    if (!name.value || name.value.trim() === "") {
         const nameError = document.getElementById("nameError");
         nameError.classList.add("visible");
 
         nameError.setAttribute("aria-hidden", false);
         nameError.setAttribute("aria-invalid", true);
-        return false;
+        x = false;
+    } else {
+        x = true;
     }
-    return true;
+    return x;
 }
+
 function search() {
     const name = document.getElementById("pesquisar");
 
