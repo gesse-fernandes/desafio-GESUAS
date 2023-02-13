@@ -71,11 +71,11 @@
 
  - Testes com PHP Unit:
 
-        - [PHPUnit](https://phpunit.readthedocs.io/pt_BR/latest/)
+        - (https://phpunit.readthedocs.io/pt_BR/latest/)
 
  ## Padrões Utilizados e Arquitetura
   
-   Foi utilizado dois padrões de Arquitetura MVC(Model,View, Controller) e também REST API com PHP puro configurado por mim mesmo usando regras de pradrões de htaccess na pasta / do projeto e outro configurado na pasta /app/API para criar rotas dinâmicas. foi usado também o paradigma de Orientação a Objetos toda estruturada com classes, atributos e métodos e instanciada de acordo com a estrutura utilizada. também foi criado um arquivo Applicatiton responsavel por toda aplicação dinamica pelo metodo run() que executa tudo que está sendo passado pelo controller pois tudo foi mapeado.
+   Foi utilizado dois padrões de Arquitetura MVC(Model,View, Controller) e também REST API com PHP puro, configurado por mim mesmo, usando regras de padrões de .htaccess na pasta / do projeto, e outro configurado na pasta /app/API para criar rotas dinâmicas. A qual o paradigma de Orientação a Objetos ocorreu em toda estruturação das classes, atributos, métodos, instanciando de acordo com a estrutura utilizada. Também foi criado um arquivo Applicatiton responsável por toda aplicação dinâmica pelo método run() que executa tudo que está sendo passado pelo controller, assim a estruturação da aplicação foi mapeada. 
   
   ## para realizar os testes 
 
@@ -135,11 +135,14 @@
      http://localhost/desafio-GESUAS/app/API/existeId/1
 
   ```
-  fique a vontade de deseja criar uma aplicação de front-end com vueJS para consumir essa API mas na frente desejo atualizar a documentação da API criando a partir front-end como deve ser consumida.
+   Mas na frente desejo atualizar a documentação da API criando a partir do front-end como deve ser consumida.
 
   ## minhas considerações
 
-   Este teste foi muito proveitoso pois tentei de tudo caprichar da melhor forma possível ter criado também uma API pois ja era uma vontade minha á muito tempo e este teste mais ainda pois foi capaz de eu realizar testes automatizados como também montar uma arquitetura de MVC um pouco mais facil de ser interpretada e utilizada e melhor ainda sem a necessidade de e usar algum framework para que eu mesma possa criar minhas rotas dinamicas e regras a partir de configurações do autoload e do proprio .htaccess  espero que vocês compreendam todo o código como também a execução do mesmo e também da documentação deste repositório para avaliação.
+   O teste foi muito proveitoso, pois fiz de tudo para caprichar da melhor forma possível, espero que gostem. 
+   Com base na solicitação criei uma API, apresentando todos os requisitos descritos e para mim foi legal me dedicar ao desafio, associando a partir de testes automatizados. Também foi elaborada uma arquitetura de MVC, com usabilidade fácil de ser interpretada e utilizada, sem a necessidade de usar algum framework.
+   Então, ocorreu a criação de rotas dinâmicas e regras, a partir das configurações do autoload e do próprio .htaccess.  Espero que vocês compreendam todo o código, como também a execução do mesmo. 
+   Assim como, a documentação deste repositório para a avaliação. Qualquer dúvida ou sugestão, estou à disposição. E desde já agradeço a oportunidade para apresentar o quanto desejo fazer parte da Gesuas.
 
   ### Agradeço bastante a oportunidade obrigado mesmo.
 
