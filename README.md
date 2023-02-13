@@ -89,7 +89,35 @@
    #testMetodo é apenas um exemplo.
 
    vendor/bin/phpunit --filter testMetodo   CitizenTest.php
-
+   
+    #resultado dos testes.
+      {
+      "version": 1,
+      "defects": [
+        
+      ],
+      "times": {
+        "CitizenTest::testIndex": 0.286,
+        "CitizenTest::testeStore": 0.023,
+        "CitizenTest::testPesquisar": 0.034,
+        "CitizenTest::testeExisteId": 0.003,
+        "CitizenTest::testSelecionaId": 0.073,
+        "CitizenTest::testDelete": 0.023,
+        "CitizenTest::testEditar": 0.019,
+        "CitizenTest::testIndexApi": 0.065,
+        "CitizenTest::testPesquisarApi": 0.023,
+        "CitizenTest::testStoreApiSuccess": 0.019,
+        "CitizenTest::testDeleteApiSuccess": 0.015,
+        "CitizenTest::testDeleteApiFailure": 0,
+        "CitizenTest::testDeleteApiMethodNotAllowed": 0,
+        "CitizenTest::testEditAPI": 0.015,
+        "CitizenTest::testEditAPIInvalidMethod": 0,
+        "CitizenTest::testEditAPIInvalidData": 0,
+        "CitizenTest::testExistsIdAPI": 0.013,
+        "CitizenTest::testGetIdApi": 0.016,
+        "CitizenTest::testGetCitizens": 0.045
+      }
+    }
   
   ```
 
